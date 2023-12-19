@@ -1,13 +1,44 @@
 console.log("Bienvenidos!")
 
+// Array de productos disponibles
+const productosDisponibles = [
+  { id: 1, 
+    nombre: "Camiseta",
+    precio: 15000
+  },
 
-   // Funcion para mostrar los productos disponibles
+  { id: 2,
+    nombre: "Pantalón",
+    precio: 40000   
+  },
+
+  { id: 3,
+    nombre: "Zapatos",
+    precio: 60000 
+  }
+];
+console.log(productosDisponibles);
+
+
+// Funcion para mostrar los productos disponibles
+
    function mostrarProductos() {
     alert("Productos disponibles:\n1. Camiseta ($15000)\n2. Pantalón ($40000)\n3. Zapatos ($60000)\n4. Salir");
   }
-  
-  // Funcion para calcular el total de la compra
-  function calcularTotal(carrito) {
+  console.log(mostrarProductos);
+
+
+
+// Funcion para obtener el producto seleccionado
+
+function obtenerProducto(opcion) {
+  return productosDisponibles.find(producto => producto.id === opcion);
+}
+
+
+// Funcion para calcular el total de la compra
+
+  function calcularTotal(carrito) { 
     let total = 0;
     for (const producto of carrito) {
       total += producto.precio * producto.cantidad;
@@ -16,13 +47,13 @@ console.log("Bienvenidos!")
   }
   
   // Inicializacion del carrito
-  const carrito = [];
+  const carrito = []; //array carrito
   
   alert("Bienvenido a la tienda online! Comencemos con tus compras");
   
   
   while (true) {
-    mostrarProductos();
+    mostrarProductos(); //funcion mostrar productos
   
     const opcion = parseInt(prompt("Ingrese el número del producto que desea comprar (1-4):"));
   
@@ -31,42 +62,31 @@ console.log("Bienvenidos!")
       break;
     }
   
-    if (opcion < 1 || opcion > 3) {
-      alert("Opción inválida. Por favor, elija un número valido.");
+    if (isNaN(opcion) || opcion < 1 || opcion > 4) {
+      alert("Opción inválida. Por favor, elija un número válido.");
       continue;
     }
-  
-    const productoSeleccionado = {
-      nombre: "",
-      precio: 0,
-      cantidad: 0
-    };
-  
-    if (opcion === 1) {
-      productoSeleccionado.nombre = "Camiseta";
-      productoSeleccionado.precio = 15000;
-    } else if (opcion === 2) {
-      productoSeleccionado.nombre = "Pantalón";
-      productoSeleccionado.precio = 40000;
-    } else if (opcion === 3) {
-      productoSeleccionado.nombre = "Zapatos";
-      productoSeleccionado.precio = 60000;
-    }
-  
-    productoSeleccionado.cantidad = parseInt(prompt(`Ingrese la cantidad de ${productoSeleccionado.nombre} que desea comprar:`));
-  
+
+   //objetos
+
+  const productoSeleccionado = obtenerProducto(opcion);
+  productoSeleccionado.cantidad = parseInt(prompt(`Ingrese la cantidad de ${productoSeleccionado.nombre} que desea comprar:`));
+
+    
     if (isNaN(productoSeleccionado.cantidad) || productoSeleccionado.cantidad <= 0) {
       alert("Cantidad inválida. Por favor, ingrese una cantidad válida.");
       continue;
     }
   
-    carrito.push(productoSeleccionado);
+    carrito.push(productoSeleccionado); //metodo push
+    console.log(productoSeleccionado);
+
   
     const continuarComprando = prompt("¿Desea seguir comprando? (Sí/No)").toLowerCase();
   
     if (continuarComprando !== "si" && continuarComprando !== "sí") {
       break;
-    }
+    } 
   }
   
   if (carrito.length > 0) {
@@ -92,23 +112,24 @@ console.log("Bienvenidos!")
       resumenCompra += `\nDescuento aplicado: $${descuento.toFixed(2)}`;
     }
   
+    
     // Mostrar metodos de envio si el total es menor a $100000
     if (totalAPagar < 100000) {
-      let metodoEnvio = prompt("Seleccione el método de envío:\n1. Retiro en sucursal ($300)\n2. Envío a domicilio ($1800)");
+      let metodoEnvio = prompt("Seleccione el método de envío:\n1. Retiro en sucursal ($1500)\n2. Envío a domicilio ($2800)");
       while (metodoEnvio !== "1" && metodoEnvio !== "2") {
         alert("Opción inválida. Por favor, seleccione 1 o 2.");
-        metodoEnvio = prompt("Seleccione el método de envío:\n1. Retiro en sucursal ($300)\n2. Envío a domicilio ($1800)");
+        metodoEnvio = prompt("Seleccione el método de envío:\n1. Retiro en sucursal ($1500)\n2. Envío a domicilio ($2800)");
       }
       
       metodoEnvio = parseInt(metodoEnvio);
       
       let costoEnvio = 0;
       if (metodoEnvio === 2) {
-        costoEnvio = 1800;
+        costoEnvio = 2800;
         resumenCompra += `\nMétodo de envío: Envío a domicilio`;
         resumenCompra += `\nCosto de envío: $${costoEnvio.toFixed(2)}`;
       } else if (metodoEnvio === 1) {
-        costoEnvio = 300;
+        costoEnvio = 1500;
         resumenCompra += `\nMétodo de envío: Retiro en sucursal`;
         resumenCompra += `\nCosto de envío: $${costoEnvio.toFixed(2)}`;
       }
@@ -126,7 +147,7 @@ console.log("Bienvenidos!")
   
       metodoPago = parseInt(metodoPago);
   
-      // Datos de la tarjeta y el titular
+      // objetos: Datos de la tarjeta
       let datosTarjeta = {};
       datosTarjeta.numero = prompt("Ingrese el número de la tarjeta:");
       datosTarjeta.fechaVencimiento = prompt("Ingrese la fecha de vencimiento de la tarjeta (MM/AA):");

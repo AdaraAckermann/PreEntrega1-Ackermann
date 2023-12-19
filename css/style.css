@@ -1,0 +1,48 @@
+body{
+    width: 100%;
+    height: 100%;
+    background-image: url("../media/fondo4.jpg"); /*imagen de fondo portada*/
+    /*background-color: rgb(211, 154, 208);*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.titulo {
+    font-size: 70px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    text-align: center;
+    padding: 30px;
+  }
+  
+
+/*barra de menu*/
+.navbar {
+  top: 0;
+  background-color: #e7c5df;
+  border-radius: 8px;
+  list-style: none;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 100;
+  box-shadow: 2px 2px 2px #666565;
+}
+.navbar ul {
+  align-items: center;
+  justify-content: space-around;
+}
+.navbar ul li {
+  padding: 10px;
+  margin: 5px;
+  background-color: none;
+  list-style: none;
+}
+.navbar ul li a {
+  color: #333;
+  text-decoration: none;
+  font-size: large;
+}
+.navbar ul li:hover {
+  background-color: rgba(236, 185, 185, 0.6352941176);
+}
