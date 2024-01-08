@@ -23,7 +23,7 @@ console.log(productosDisponibles);
 // Funcion para mostrar los productos disponibles
 
    function mostrarProductos() {
-    alert("Productos disponibles:\n1. Camiseta ($15000)\n2. Pantalón ($40000)\n3. Zapatos ($60000)\n4. Salir");
+    //alert("Productos disponibles:\n1. Camiseta ($15000)\n2. Pantalón ($40000)\n3. Zapatos ($60000)\n4. Salir");
   }
   console.log(mostrarProductos);
 
@@ -49,21 +49,21 @@ function obtenerProducto(opcion) {
   // Inicializacion del carrito
   const carrito = []; //array carrito
   
-  alert("Bienvenido a la tienda online! Comencemos con tus compras");
+  //alert("Bienvenido a la tienda online! Comencemos con tus compras");
   
   
   while (true) {
     mostrarProductos(); //funcion mostrar productos
   
-    const opcion = parseInt(prompt("Ingrese el número del producto que desea comprar (1-4):"));
+    //const opcion = parseInt(prompt("Ingrese el número del producto que desea comprar (1-4):"));
   
     if (opcion === 4) {
-      alert("Gracias por visitarnos, hasta la proxima!");
+      //alert("Gracias por visitarnos, hasta la proxima!");
       break;
     }
   
     if (isNaN(opcion) || opcion < 1 || opcion > 4) {
-      alert("Opción inválida. Por favor, elija un número válido.");
+      //alert("Opción inválida. Por favor, elija un número válido.");
       continue;
     }
 
@@ -74,7 +74,7 @@ function obtenerProducto(opcion) {
 
     
     if (isNaN(productoSeleccionado.cantidad) || productoSeleccionado.cantidad <= 0) {
-      alert("Cantidad inválida. Por favor, ingrese una cantidad válida.");
+      //alert("Cantidad inválida. Por favor, ingrese una cantidad válida.");
       continue;
     }
   
@@ -95,7 +95,7 @@ function obtenerProducto(opcion) {
     let descuento = 0;
     if (totalCompra >= 100000) {
       descuento = totalCompra * 0.1;
-      alert("¡Felicidades! Obtuviste un 10% de descuento.");
+      //alert("¡Felicidades! Obtuviste un 10% de descuento.");
     }
   
     const totalAPagar = totalCompra - descuento;
@@ -117,7 +117,7 @@ function obtenerProducto(opcion) {
     if (totalAPagar < 100000) {
       let metodoEnvio = prompt("Seleccione el método de envío:\n1. Retiro en sucursal ($1500)\n2. Envío a domicilio ($2800)");
       while (metodoEnvio !== "1" && metodoEnvio !== "2") {
-        alert("Opción inválida. Por favor, seleccione 1 o 2.");
+        //alert("Opción inválida. Por favor, seleccione 1 o 2.");
         metodoEnvio = prompt("Seleccione el método de envío:\n1. Retiro en sucursal ($1500)\n2. Envío a domicilio ($2800)");
       }
       
@@ -141,7 +141,7 @@ function obtenerProducto(opcion) {
       // Agregar métodos de pago
       let metodoPago = prompt("Seleccione el método de pago:\n1. Tarjeta de crédito\n2. Tarjeta de débito");
       while (metodoPago !== "1" && metodoPago !== "2") {
-          alert("Opción inválida. Por favor, seleccione 1 (Tarjeta de crédito) o 2 (Tarjeta de débito).");
+          //alert("Opción inválida. Por favor, seleccione 1 (Tarjeta de crédito) o 2 (Tarjeta de débito).");
           metodoPago = prompt("Seleccione el método de pago:\n1. Tarjeta de crédito\n2. Tarjeta de débito");
       }
   
@@ -163,11 +163,11 @@ function obtenerProducto(opcion) {
   
 
    // Mostrar el resumen de la compra usando alert()
-    alert(resumenCompra);
+    //alert(resumenCompra);
 
 
    // mostrar el resumen de la compra con console.log()
  console.log(resumenCompra);
 } else {
-    alert("No se ha agregado ningún producto al carrito.");
+    //alert("No se ha agregado ningún producto al carrito.");
 }
