@@ -50,3 +50,49 @@ body{
 
 
 
+body {
+  background-color: #f8f9fa;
+}
+
+.producto-container {
+  margin-bottom: 20px;
+}
+
+.producto {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.producto-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.producto-titulo {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.producto-precio {
+  font-size: 16px;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.btn-agregar {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-agregar:hover {
+  background-color: #218838;
+}
