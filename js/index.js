@@ -1,173 +1,172 @@
-console.log("Bienvenidos!")
-
 // Array de productos disponibles
-const productosDisponibles = [
-  { id: 1, 
-    nombre: "Camiseta",
-    precio: 15000
-  },
 
-  { id: 2,
-    nombre: "Pantalón",
-    precio: 40000   
-  },
+//----------------------------------------------REMERAS-------------------------------------------------------------------------
+const productos = [
+  { 
+    id: "remera-01", 
+    titulo: "Remera 01",
+    imagen: "/media/remera-01.jpeg",
+    catergoria: {
+      nombre: "Remeras",
+      id: "remeras"
+    },
+    precio: 16000
 
-  { id: 3,
-    nombre: "Zapatos",
-    precio: 60000 
+  },
+  { 
+    id: "remera-02", 
+    titulo: "Remera 02",
+    imagen: "/media/remera-02.jpg",
+    catergoria: {
+      nombre: "Remeras",
+      id: "remeras"
+    },
+    precio: 15900
+
+  },
+  { 
+    id: "remera-03", 
+    titulo: "Remera 03",
+    imagen: "/media/remera-03.jpg",
+    catergoria: {
+      nombre: "Remeras",
+      id: "remeras"
+    },
+    precio: 14000
+
+  },
+  { 
+    id: "remera-04", 
+    titulo: "Remera 04",
+    imagen: "/media/remera-04.jpg",
+    catergoria: {
+      nombre: "Remeras",
+      id: "remeras"
+    },
+    precio: 13900
+
+  },
+  { 
+    id: "remera-05", 
+    titulo: "Remera 05",
+    imagen: "/media/remera-05.jpg",
+    catergoria: {
+      nombre: "Remeras",
+      id: "remeras"
+    },
+    precio: 14000
+
+  },
+  { 
+    id: "remera-06", 
+    titulo: "Remera 06",
+    imagen: "/media/remera-06.jpg",
+    catergoria: {
+      nombre: "Remeras",
+      id: "remeras"
+    },
+    precio: 12000
+
+  },
+  { 
+    id: "remera-07", 
+    titulo: "Remera 07",
+    imagen: "/media/remera-06.jpg",
+    catergoria: {
+      nombre: "Remeras",
+      id: "remeras"
+    },
+    precio: 14500
+
+  },
+  { 
+    id: "remera-08", 
+    titulo: "Remera 08",
+    imagen: "/media/remera-06.jpg",
+    catergoria: {
+      nombre: "Remeras",
+      id: "remeras"
+    },
+    precio: 16700
+
   }
 ];
-console.log(productosDisponibles);
+
+const contenedorProductos = document.querySelector("#contenedor-productos");
+let botonesAgregar = document.querySelectorAll(".producto-agregar");
+const numerito = document.querySelector("#numerito");
 
 
-// Funcion para mostrar los productos disponibles
 
-   function mostrarProductos() {
-    //alert("Productos disponibles:\n1. Camiseta ($15000)\n2. Pantalón ($40000)\n3. Zapatos ($60000)\n4. Salir");
+function cargarProductos() {
+
+
+  productos.forEach(producto => {
+
+    const div = document.createElement("div");
+    div.classList.add("producto");
+    div.innerHTML = `
+            <div class="producto-container">
+              <div class="producto-detalles">
+                <img class="producto-img" src="${producto.imagen} " alt="${producto.titulo}">
+                <h3 class="producto-titulo">${producto.titulo}</h3>
+                <p class="producto-precio">${producto.precio}</p>
+                <button class="producto-agregar btn btn-agregar" id="${producto.id}">Agregar al Carrito</button>
+              </div>
+            </div>
+
+    `;
+
+    contenedorProductos.append(div);
+  })
+
+  actualizarBotonesAgregar();
+  console.log(botonesAgregar);
+
+}
+
+cargarProductos();
+
+function actualizarBotonesAgregar () {
+  botonesAgregar = document.querySelectorAll(".producto-agregar");
+
+  botonesAgregar.forEach(boton => {
+    boton.addEventListener("click", agregarAlCarrito);
+  });
+
+}
+
+//-------------------Para sumar productos al carrito-----------------------
+
+const productosEnCarrito = [];
+
+function agregarAlCarrito(e) {
+
+  const idBoton = e.currentTarget.id;
+  const productoAgregado = productos.find(producto => producto.id === idBoton);
+
+  if(productosEnCarrito.some(producto => producto.id ===idBoton)){
+    const indexRemeras = productosEnCarrito.findIndex(producto => producto.id === idBoton );
+    productosEnCarrito[indexRemeras].cantidad++;
+
+  } else {
+    productoAgregado.cantidad = 1;
+    productosEnCarrito.push(productoAgregado);
   }
-  console.log(mostrarProductos);
 
+  actualizarNumerito();
 
+  console.log(productosEnCarrito);
 
-// Funcion para obtener el producto seleccionado
+}
 
-function obtenerProducto(opcion) {
-  return productosDisponibles.find(producto => producto.id === opcion);
+//-------------------Que los productos se agreguen efectivamente en el carrito------------------
+
+function actualizarNumerito() {
+  let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0 );
+  numerito.innerText = nuevoNumerito;
+
+  console.log(nuevoNumerito);
 }
 
 
-// Funcion para calcular el total de la compra
-
-  function calcularTotal(carrito) { 
-    let total = 0;
-    for (const producto of carrito) {
-      total += producto.precio * producto.cantidad;
-    }
-    return total;
-  }
-  
-  // Inicializacion del carrito
-  const carrito = []; //array carrito
-  
-  //alert("Bienvenido a la tienda online! Comencemos con tus compras");
-  
-  
-  while (true) {
-    mostrarProductos(); //funcion mostrar productos
-  
-    //const opcion = parseInt(prompt("Ingrese el número del producto que desea comprar (1-4):"));
-  
-    if (opcion === 4) {
-      //alert("Gracias por visitarnos, hasta la proxima!");
-      break;
-    }
-  
-    if (isNaN(opcion) || opcion < 1 || opcion > 4) {
-      //alert("Opción inválida. Por favor, elija un número válido.");
-      continue;
-    }
-
-   //objetos
-
-  const productoSeleccionado = obtenerProducto(opcion);
-  productoSeleccionado.cantidad = parseInt(prompt(`Ingrese la cantidad de ${productoSeleccionado.nombre} que desea comprar:`));
-
-    
-    if (isNaN(productoSeleccionado.cantidad) || productoSeleccionado.cantidad <= 0) {
-      //alert("Cantidad inválida. Por favor, ingrese una cantidad válida.");
-      continue;
-    }
-  
-    carrito.push(productoSeleccionado); //metodo push
-    console.log(productoSeleccionado);
-
-  
-    const continuarComprando = prompt("¿Desea seguir comprando? (Sí/No)").toLowerCase();
-  
-    if (continuarComprando !== "si" && continuarComprando !== "sí") {
-      break;
-    } 
-  }
-  
-  if (carrito.length > 0) {
-    const totalCompra = calcularTotal(carrito);
-  
-    let descuento = 0;
-    if (totalCompra >= 100000) {
-      descuento = totalCompra * 0.1;
-      //alert("¡Felicidades! Obtuviste un 10% de descuento.");
-    }
-  
-    const totalAPagar = totalCompra - descuento;
-  
-    let resumenCompra = `Resumen de la compra:\n${carrito.length} productos en el carrito\n`;
-  
-    for (const producto of carrito) {
-      resumenCompra += `${producto.cantidad} ${producto.nombre}\n`;
-    }
-  
-    resumenCompra += `Total a pagar: $${totalAPagar.toFixed(2)}`;
-  
-    if (descuento > 0) {
-      resumenCompra += `\nDescuento aplicado: $${descuento.toFixed(2)}`;
-    }
-  
-    
-    // Mostrar metodos de envio si el total es menor a $100000
-    if (totalAPagar < 100000) {
-      let metodoEnvio = prompt("Seleccione el método de envío:\n1. Retiro en sucursal ($1500)\n2. Envío a domicilio ($2800)");
-      while (metodoEnvio !== "1" && metodoEnvio !== "2") {
-        //alert("Opción inválida. Por favor, seleccione 1 o 2.");
-        metodoEnvio = prompt("Seleccione el método de envío:\n1. Retiro en sucursal ($1500)\n2. Envío a domicilio ($2800)");
-      }
-      
-      metodoEnvio = parseInt(metodoEnvio);
-      
-      let costoEnvio = 0;
-      if (metodoEnvio === 2) {
-        costoEnvio = 2800;
-        resumenCompra += `\nMétodo de envío: Envío a domicilio`;
-        resumenCompra += `\nCosto de envío: $${costoEnvio.toFixed(2)}`;
-      } else if (metodoEnvio === 1) {
-        costoEnvio = 1500;
-        resumenCompra += `\nMétodo de envío: Retiro en sucursal`;
-        resumenCompra += `\nCosto de envío: $${costoEnvio.toFixed(2)}`;
-      }
-    } else {
-      // Envio gratis si el total es igual o mayor a $100000
-      resumenCompra += "\nEnvío gratis por compra igual o mayor a $100000!";
-    }
-
-      // Agregar métodos de pago
-      let metodoPago = prompt("Seleccione el método de pago:\n1. Tarjeta de crédito\n2. Tarjeta de débito");
-      while (metodoPago !== "1" && metodoPago !== "2") {
-          //alert("Opción inválida. Por favor, seleccione 1 (Tarjeta de crédito) o 2 (Tarjeta de débito).");
-          metodoPago = prompt("Seleccione el método de pago:\n1. Tarjeta de crédito\n2. Tarjeta de débito");
-      }
-  
-      metodoPago = parseInt(metodoPago);
-  
-      // objetos: Datos de la tarjeta
-      let datosTarjeta = {};
-      datosTarjeta.numero = prompt("Ingrese el número de la tarjeta:");
-      datosTarjeta.fechaVencimiento = prompt("Ingrese la fecha de vencimiento de la tarjeta (MM/AA):");
-      datosTarjeta.codigoSeguridad = prompt("Ingrese el código de seguridad de la tarjeta:");
-      datosTarjeta.titular = prompt("Ingrese el nombre del titular de la tarjeta:");
-  
-      // Mostrar el resumen de la compra, metodo de pago y datos de la tarjeta usando alert()
-      resumenCompra += `\nMétodo de pago: ${metodoPago === 1 ? "Tarjeta de crédito" : "Tarjeta de débito"}`;
-      resumenCompra += `\nNúmero de tarjeta: ${datosTarjeta.numero}`;
-      resumenCompra += `\nFecha de vencimiento: ${datosTarjeta.fechaVencimiento}`;
-      resumenCompra += `\nCódigo de seguridad: ${datosTarjeta.codigoSeguridad}`;
-      resumenCompra += `\nTitular de la tarjeta: ${datosTarjeta.titular}`;
-  
-
-   // Mostrar el resumen de la compra usando alert()
-    //alert(resumenCompra);
-
-
-   // mostrar el resumen de la compra con console.log()
- console.log(resumenCompra);
-} else {
-    //alert("No se ha agregado ningún producto al carrito.");
-}

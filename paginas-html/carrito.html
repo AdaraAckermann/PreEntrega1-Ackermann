@@ -19,13 +19,13 @@
   <body>
     <div>
       <header class="fondo">
-        <h1 class="titulo">BIENVENIDOS A DAKOTA</h1>
+        <h1 class="titulo">DAKOTA & CO</h1>
       </header>
       
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
           <!-- Logo o título del sitio -->
-          <a class="navbar-brand" href="#">Mi Sitio o logo</a>
+          <a class="navbar-brand" href="#">D&C</a>
   
           <!-- Botón para desplegar el menú en dispositivos moviles -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,10 +77,10 @@
 
             <div class="carrito-producto row">
     
-              <div class="col-md-6">
-    
-                <h3>Nombre producto</h3>
-                <p>Precio: $XXXX</p>
+              <div class="col-md-2">
+                <img src="/media/camisa.jpeg" alt="Producto 1" class="carrito-producto-imagen">
+                <h6>Nombre producto</h6>
+                <small>Precio: $XXXX</small>
                 <p>Cantidad: </p>
                 <button class="btn btn-danger">
                   <i class="bi bi-trash"></i>Eliminar del Carrito
@@ -90,29 +90,46 @@
             </div>
 
 
-            <!--Botones adicionales-->
-            <div class="carrito-acciones">
+            <div class="col-md-2">
+              <img src="/media/camisa.jpeg" alt="Producto 2" class="carrito-producto-imagen">
+              <h6>Nombre producto</h6>
+              <small>Precio: $XXXX</small>
+              <p>Cantidad: </p>
+              <button class="btn btn-danger">
+                <i class="bi bi-trash"></i>Eliminar del Carrito
+              </button>
+            </div>
+            
+          </div>
 
-              <div>
-                <a href="/index.html" class="boton-volver btn btn-primary mt-2"><i class="bi bi-arrow-return-left"></i>Seguir Comprando</a>
-              </div>
-      
-              <div>
-                <button class="carrito-acciones-vaciar btn btn-primary mt-2">Vaciar carrito </button>
+          <!--Botones adicionales-->
+          <div class="carrito-acciones">
+
+            <div class="carrito-acciones-izquierda">
+              <div class="carrito-acciones-seguir-comprando">
+                <a href="/index.html" class="btn btn-primary mt-2"><i class="bi bi-arrow-return-left"></i>Seguir Comprando</a>
               </div>
 
+              <div class="carrito-acciones-vaciar">
+                <button class="btn btn-primary mt-2">Vaciar carrito </button>
+              </div>
+            </div>
+
+            <div class="carrito-acciones-derecha">
               <div class="carrito-acciones-total">
                 <p>Total: </p>
                 <p id="total">$</p>
-                <button class="carrito-acciones-comprar btn btn-primary mt-2"><i class="bi bi-bag-heart-fill"></i>Comprar ahora</button>
               </div>
               
-              <button onclick="history.go(-1);" class="btn btn-secondary mt-2">Volver Atrás</button>
-
+              <div class="carrito-acciones-comprar">
+                <button class="btn btn-primary mt-2"><i class="bi bi-bag-heart-fill"></i>Comprar ahora</button>
+              </div>
             </div>
 
-            
+            <button onclick="history.go(-1);" class="btn btn-secondary mt-2">Volver Atrás</button>
+
           </div>
+          
 
         </div>
 
@@ -124,7 +141,14 @@
     
     
    
-      
+      <!-- Cartel de Anuncio -->
+
+      <section class="container">
+        <div class="alert alert-info">
+          <strong>¡Entérate de las Novedades!</strong> Suscríbete a nuestro boletín para recibir las últimas noticias.
+        </div>
+      </section>
+
       <!-- Footer -->
       <footer class="container">
         <p>&copy; 2023 Mi Tienda - Todos los derechos reservados.</p>
@@ -147,7 +171,7 @@
 
 
 
-    <script src="./js/index.js"></script>
+    <script src="/js/index.js"></script>
     <!--  <script src="./paginas/remeras.js"></script>  -->
     <!--  <script src="./paginas/pantalones.js"></script>  -->
     <!--  <script src="./paginas/contacto.js"></script>  -->   
