@@ -36,29 +36,31 @@
   
           <!-- Menú de navegación -->
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="menu navbar-nav">
   
-              <li class="boton-menu boton-categoria nav-item active">
-                <a class="nav-link" href="/index.html"><i class="bi bi-handbag"></i> Inicio</a>
+              <li id="todos-remeras" class="boton-menu boton-categoria nav-item active">
+                <a  class="nav-link" href="/index.html"><i class="bi bi-handbag"></i> Inicio</a>
               </li>
   
-              <li class="boton-menu boton-categoria nav-item">
+              <li id="remeras" class="boton-menu boton-categoria nav-item">
                 <a class="nav-link" href="./remeras.html"><i class="bi bi-hand-index-thumb-fill"></i> Remeras</a>
               </li>
   
-              <li class="boton-menu boton-categoria nav-item">
+              <li id="pantalones" class="boton-menu boton-categoria nav-item">
                 <a class="nav-link" href="./pantalones.html"><i class="bi bi-hand-index-thumb-fill"></i> Pantalones</a>
               </li>
   
-              <li class="boton-menu boton-categoria nav-item">
+              <li id="contacto" class="boton-menu boton-categoria nav-item">
                 <a class="nav-link" href="./contacto.html"><i class="bi bi-person-lines-fill"></i>  Contacto</a>
               </li>
   
-              <li class="boton-menu boton-categoria nav-item">
+              <li id="carrito" class="boton-menu boton-categoria nav-item">
                 <a class="nav-link boton-carrito" href="./carrito.html"><i class="bi bi-cart4"></i> Carrito <span id="numerito" class="numerito"> 0</span></a>
               </li>
   
             </ul>
+
+            
             <!-- Campo de búsqueda en la barra de menú -->
             <form class="form-inline ml-auto">
               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
@@ -72,10 +74,12 @@
 
       <!--------------------------------  P R O D U C T O S   ---------------------------------->
       <div class="container mt-5">
-        <h2 class="text-center mb-4">Nuestros Productos</h2>
+
+        <h2 id="titulo-principal" class="titulo-principal text-center mb-4">Nuestros Productos</h2>
         <div id="contenedor-productos" class="contenedor-productos row">
           <!-- Esto se va completar con JS -->
         </div>
+
       </div>
 
 
@@ -118,10 +122,7 @@
 
 
 
-    <script src="/js/index.js"></script>
-
-    <!--  <script src="/js/paginas/contacto.js"></script>  -->   
-    <!--  <script src="/js/paginas/carrito.js"></script>  -->
+    <script src="/js/paginas/remeras.js"></script>
 
   </body>
 </html>

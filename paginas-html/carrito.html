@@ -57,6 +57,8 @@
               </li>
   
             </ul>
+
+            
             <!-- Campo de búsqueda en la barra de menú -->
             <form class="form-inline ml-auto">
               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
@@ -71,66 +73,74 @@
       <main>
         <h2 class="titulo-principal">Carrito</h2>
         <div class="contenedor-carrito">
-          <p class="carrito-vacio">Tu carrito esta vacio.<i class="bi bi-emoji-frown"></i></p>
+          <p id="carrito-vacio" class="carrito-vacio">Tu carrito esta vacio.<i class="bi bi-emoji-frown"></i></p>
 
-          <div class="carrito-productoS container mt-5">
+          <div id="carrito-productos" class="carrito-productos disabled container mt-5">
 
-            <div class="carrito-producto row">
+            <div id="carrito-producto" class="carrito-producto row">
     
               <div class="col-md-2">
-                <img src="/media/camisa.jpeg" alt="Producto 1" class="carrito-producto-imagen">
-                <h6>Nombre producto</h6>
-                <small>Precio: $XXXX</small>
-                <p>Cantidad: </p>
-                <button class="btn btn-danger">
-                  <i class="bi bi-trash"></i>Eliminar del Carrito
+                <img class="carrito-producto-imagen" src="/media/camisa.jpeg" alt="Producto 1">
+                <div class="carrito-producto-titulo">
+                  <small>Titulo</small>
+                  <h6>Remera 01</h6>
+                </div>
+
+                <div class="carrito-producto-cantidad">
+                  <small>Cantidad</small>
+                  <p>1</p>
+                </div>
+
+                <div class="carrito-producto-precio">
+                  <small>Precio</small>
+                  <p>$1000</p>
+                </div>
+
+                <div class="carrito-producto-subtotal">
+                  <small>Subtotal</small>
+                  <p>$1000</p>
+                </div>
+                
+              
+                <button class="carrito-producto-eliminar btn btn-danger">
+                  <i class="bi bi-trash"></i>
                 </button>
               </div>
 
             </div>
 
-
-            <div class="col-md-2">
-              <img src="/media/camisa.jpeg" alt="Producto 2" class="carrito-producto-imagen">
-              <h6>Nombre producto</h6>
-              <small>Precio: $XXXX</small>
-              <p>Cantidad: </p>
-              <button class="btn btn-danger">
-                <i class="bi bi-trash"></i>Eliminar del Carrito
-              </button>
-            </div>
-            
           </div>
 
           <!--Botones adicionales-->
-          <div class="carrito-acciones">
+          <div id="carrito-acciones" class="carrito-acciones disabled">
 
             <div class="carrito-acciones-izquierda">
-              <div class="carrito-acciones-seguir-comprando">
-                <a href="/index.html" class="btn btn-primary mt-2"><i class="bi bi-arrow-return-left"></i>Seguir Comprando</a>
-              </div>
 
               <div class="carrito-acciones-vaciar">
                 <button class="btn btn-primary mt-2">Vaciar carrito </button>
               </div>
+              <div class="carrito-acciones-seguir-comprando">
+                <a href="/index.html" class="btn btn-primary mt-2"><i class="bi bi-arrow-return-left"></i>Seguir Comprando</a>
+              </div>
             </div>
 
             <div class="carrito-acciones-derecha">
+
               <div class="carrito-acciones-total">
                 <p>Total: </p>
                 <p id="total">$</p>
               </div>
-              
-              <div class="carrito-acciones-comprar">
-                <button class="btn btn-primary mt-2"><i class="bi bi-bag-heart-fill"></i>Comprar ahora</button>
-              </div>
+              <button class="carrito-acciones-comprar btn btn-primary mt-2"><i class="bi bi-bag-heart-fill"></i>Comprar ahora</button>
             </div>
+
+
 
             <button onclick="history.go(-1);" class="btn btn-secondary mt-2">Volver Atrás</button>
 
           </div>
-          
 
+          <p id="carrito-comprado" class="carrito-comprado disabled">Muchas gracias por su compra!</p>
+          
         </div>
 
       </main>
@@ -171,11 +181,7 @@
 
 
 
-    <script src="/js/index.js"></script>
-    <!--  <script src="./paginas/remeras.js"></script>  -->
-    <!--  <script src="./paginas/pantalones.js"></script>  -->
-    <!--  <script src="./paginas/contacto.js"></script>  -->   
-    <!--  <script src="./paginas/carrito.js"></script>  -->
+    <script src="/js/paginas/carrito.js"></script>
 
   </body>
 </html>

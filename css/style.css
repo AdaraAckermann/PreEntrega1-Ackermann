@@ -162,15 +162,15 @@ body {
 
 .carrito-acciones-vaciar {
   border: 0;
-  padding: 0.5rem;
+  padding: 0.2rem;
   border-radius: 0.5rem;
 }
 
 
 .carrito-acciones-comprar {
   border: 0;
-  padding: 1rem;
-  border-radius: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 
 }
 
