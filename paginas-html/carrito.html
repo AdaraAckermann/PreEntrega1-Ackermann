@@ -53,7 +53,7 @@
               </li>
   
               <li class="boton-menu boton-categoria nav-item">
-                <a class="nav-link boton-carrito" href="./carrito.html"><i class="bi bi-cart4"></i> Carrito</a>
+                <a class="nav-link boton-carrito active" href="./carrito.html"><i class="bi bi-cart4"></i> Carrito</a>
               </li>
   
             </ul>
@@ -80,31 +80,7 @@
             <div id="carrito-producto" class="carrito-producto row">
     
               <div class="col-md-2">
-                <img class="carrito-producto-imagen" src="/media/camisa.jpeg" alt="Producto 1">
-                <div class="carrito-producto-titulo">
-                  <small>Titulo</small>
-                  <h6>Remera 01</h6>
-                </div>
-
-                <div class="carrito-producto-cantidad">
-                  <small>Cantidad</small>
-                  <p>1</p>
-                </div>
-
-                <div class="carrito-producto-precio">
-                  <small>Precio</small>
-                  <p>$1000</p>
-                </div>
-
-                <div class="carrito-producto-subtotal">
-                  <small>Subtotal</small>
-                  <p>$1000</p>
-                </div>
-                
-              
-                <button class="carrito-producto-eliminar btn btn-danger">
-                  <i class="bi bi-trash"></i>
-                </button>
+               <!---------Esto se va completar con JS--------->
               </div>
 
             </div>
@@ -117,7 +93,7 @@
             <div class="carrito-acciones-izquierda">
 
               <div class="carrito-acciones-vaciar">
-                <button class="btn btn-primary mt-2">Vaciar carrito </button>
+                <button id="carrito-acciones-vaciar" class="btn btn-primary mt-2">Vaciar carrito </button>
               </div>
               <div class="carrito-acciones-seguir-comprando">
                 <a href="/index.html" class="btn btn-primary mt-2"><i class="bi bi-arrow-return-left"></i>Seguir Comprando</a>
@@ -127,10 +103,10 @@
             <div class="carrito-acciones-derecha">
 
               <div class="carrito-acciones-total">
-                <p>Total: </p>
-                <p id="total">$</p>
+                <h5>Total: </h5>
+                <h6 id="total">$</h6>
               </div>
-              <button class="carrito-acciones-comprar btn btn-primary mt-2"><i class="bi bi-bag-heart-fill"></i>Comprar ahora</button>
+              <button id="carrito-acciones-comprar" class="carrito-acciones-comprar btn btn-primary mt-2"><i class="bi bi-bag-heart-fill"></i>Comprar ahora</button>
             </div>
 
 

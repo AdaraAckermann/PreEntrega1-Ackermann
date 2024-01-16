@@ -173,12 +173,13 @@ botonesCategorias.forEach(boton => {
   
   //-------------------Funcion agregar al carrito:Para sumar productos al carrito-----------------------
 
+
 let productosEnCarrito;
 
-const productosEnCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito")) ;
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
 
   if(productosEnCarritoLS) {
-    productosEnCarrito = productosEnCarritoLS;
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
     actualizarNumerito();
 
   } else {
@@ -201,15 +202,11 @@ const productosEnCarritoLS = JSON.parse(localStorage.getItem("productos-en-carri
       productosEnCarrito.push(productoAgregado);
     }
 
-
-  
     actualizarNumerito();
   
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 
     console.log(productosEnCarrito);
-
-  
   
   }
   
