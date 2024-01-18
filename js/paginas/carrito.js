@@ -1,3 +1,6 @@
+import Swal from 'sweetalert2'
+
+
 let productosEnCarrito = localStorage.getItem("productos-en-carrito") ;
 productosEnCarrito = JSON.parse(productosEnCarrito);
 //console.log(productosEnCarrito);
@@ -103,14 +106,52 @@ function eliminarDelCarrito (e) {
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 }
 
-botonVaciar.addEventListener("click", vaciarCarrito);
-function vaciarCarrito () {
+//--------------------Evento + funcion + libreria-------------------------
 
-    productosEnCarrito.length = 0;
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-    cargarProductosCarrito();
+// asigno el evento click al boton de vaciarCarrito
+botonVaciar.addEventListener("click", confirmarVaciarCarrito);
 
+// función para mostrar el cuadro de dialogo de confirmación
+
+function confirmarVaciarCarrito() {
+
+    // muestra el cuadro si desea vaciar o no
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción vaciará tu carrito. ¿Deseas continuar?',
+        icon: 'Question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, vaciar carrito',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        // si el usuario hace clic en "Confirmar" se vacía el carrito
+        
+        if (result.isConfirmed) {
+            vaciarCarrito();
+            // mensaje de éxito
+            Swal.fire({
+                text:'Carrito vaciado',
+                icon: "success",
+                timer: 2000
+            });
+        }
+    });
 }
+
+// ----------------Funcion para vaciar el carrito-----------------
+
+function vaciarCarrito() {
+
+    // vacia el array de productos en el carrito
+    productosEnCarrito.length = 0;
+    // recarga el carrito vacío en el localStorage
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+    // recarga la visualización de productos en el carrito
+    cargarProductosCarrito();
+}
+
 
 
 function actualizarTotal () {

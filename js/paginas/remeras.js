@@ -1,3 +1,5 @@
+import Toastify from "toastify-js"
+import "toastify-js/src/toastify.css"
 // Array de productos disponibles
 
 //----------------------------------------------REMERAS-------------------------------------------------------------------------
@@ -205,9 +207,23 @@ let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
     actualizarNumerito();
   
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+    mostrarNotificacion(productoAgregado.titulo);
 
     console.log(productosEnCarrito);
   
+  }
+//---------------------------------TOASTIFY-------------------------------------
+  function mostrarNotificacion(titulo) {
+    Toastify({
+      text: `Producto "${titulo}" agregado al carrito`,
+      duration: 3000,
+      gravity: 'bottom', // Posición de la notificación
+      position: 'right', // Alineación en la posición elegida
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+    
+    }).showToast();
   }
   
   //-------------------Que los productos se agreguen efectivamente en el carrito------------------
