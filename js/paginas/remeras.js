@@ -94,6 +94,12 @@ const productos = [
     },
 
   ];
+
+  fetch("/data/productos.json")
+      .then(  resp => resp.json())
+      .then( data => console.log(data))
+
+
   
   const contenedorProductos = document.querySelector("#contenedor-productos");
   const botonesCategorias = document.querySelectorAll(".boton-categoria");
@@ -118,7 +124,7 @@ const productos = [
                 <div class="producto-detalles">
                   <img class="producto-img" src="${producto.imagen} " alt="${producto.titulo}">
                   <h3 class="producto-titulo">${producto.titulo}</h3>
-                  <p class="producto-precio">${producto.precio}</p>
+                  <p class="producto-precio">$${producto.precio}</p>
                   <button class="producto-agregar btn btn-agregar" id="${producto.id}">Agregar al Carrito</button>
                 </div>
             </div>

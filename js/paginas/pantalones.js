@@ -1,5 +1,8 @@
-    //------------------PANTALONES--------------------
+import Toastify from "toastify-js"
+import "toastify-js/src/toastify.css"
 
+
+//------------------PANTALONES--------------------
     const pantalones = [
     
 
@@ -60,8 +63,6 @@
   const contenedorProductos = document.querySelector("#contenedor-productos");
   const botonesCategorias = document.querySelectorAll(".boton-categoria");
   const tituloPrincipal = document.querySelector("#titulo-principal");
-
-
   let botonesAgregar = document.querySelectorAll(".producto-agregar");
   const numerito = document.querySelector("#numerito");
   
@@ -73,17 +74,17 @@
     contenedorProductos.innerHTML = "";
     
   
-    productosElegidos.forEach(pantalones => {
+    productosElegidos.forEach(pantalon => {
         
         const div = document.createElement("div");
         div.classList.add("producto");
         div.innerHTML = `
             <div class="producto-container">
                 <div class="producto-detalles">
-                  <img class="producto-img" src="${pantalones.imagen} " alt="${pantalones.titulo}">
-                  <h3 class="producto-titulo">${pantalones.titulo}</h3>
-                  <p class="producto-precio">${pantalones.precio}</p>
-                  <button class="producto-agregar btn btn-agregar" id="${pantalones.id}">Agregar al Carrito</button>
+                  <img class="producto-img" src="${pantalon.imagen} " alt="${pantalon.titulo}">
+                  <h3 class="producto-titulo">${pantalon.titulo}</h3>
+                  <p class="producto-precio">$${pantalon.precio}</p>
+                  <button class="producto-agregar btn btn-agregar" id="${pantalon.id}">Agregar al Carrito</button>
                 </div>
             </div>
   
@@ -92,6 +93,8 @@
        contenedorProductos.append(div);
 
     })
+    actualizarBotonesAgregar();
+    console.log(botonesAgregar);
   
 }
 
@@ -106,11 +109,11 @@ botonesCategorias.forEach(boton => {
         e.currentTarget.classList.add("active");
 
         if (e.currentTarget.id != "todos-inicio") {
-            const productoCategoria = productos.find(pantalones => pantalones.catergoria.id === e.currentTarget.id);
+            const productoCategoria = pantalones.find(pantalon => pantalon.catergoria.id === e.currentTarget.id);
             console.log(productoCategoria);
             tituloPrincipal.innerText = "Todos los productos";
 
-            const productosBoton = productos.filter(pantalones => pantalones.catergoria.id === e.currentTarget.id);
+            const productosBoton = pantalones.filter(pantalon => pantalon.catergoria.id === e.currentTarget.id);
             cargarProductos(productosBoton);
 
         }  else {
@@ -136,16 +139,28 @@ botonesCategorias.forEach(boton => {
   
   //-------------------Para sumar productos al carrito-----------------------
   
-  const productosEnCarrito = [];
+  
+let productosEnCarrito;
+
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
+
+  if(productosEnCarritoLS) {
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
+    actualizarNumerito();
+
+  } else {
+    productosEnCarrito = [];
+  }
+
   
   function agregarAlCarrito(e) {
   
     const idBoton = e.currentTarget.id;
-    const productoAgregado = productos.find(pantalones => pantalones.id === idBoton);
+    const productoAgregado = pantalones.find(pantalon => pantalon.id === idBoton);
   
-    if(productosEnCarrito.some(pantalones => pantalones.id ===idBoton)){
-      const indexRemeras = productosEnCarrito.findIndex(producto => producto.id === idBoton );
-      productosEnCarrito[indexRemeras].cantidad++;
+    if(productosEnCarrito.some(pantalon => pantalon.id ===idBoton)){
+      const index = productosEnCarrito.findIndex(pantalon => pantalon.id === idBoton );
+      productosEnCarrito[index].cantidad++;
   
     } else {
       productoAgregado.cantidad = 1;
@@ -155,16 +170,31 @@ botonesCategorias.forEach(boton => {
     actualizarNumerito();
   
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-  
+    mostrarNotificacion(productoAgregado.titulo);
+
   
     console.log(productosEnCarrito);
   
   }
   
+  //---------------------------------TOASTIFY-------------------------------------
+  function mostrarNotificacion(titulo) {
+    Toastify({
+      text: `Producto "${titulo}" agregado al carrito`,
+      duration: 3000,
+      gravity: 'bottom', // Posición de la notificación
+      position: 'right', // Alineación en la posición elegida
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+    
+    }).showToast();
+  }
+  
   //-------------------Que los productos se agreguen efectivamente en el carrito------------------
   
   function actualizarNumerito() {
-    let nuevoNumerito = productosEnCarrito.reduce((acc, pantalones) => acc + pantalones.cantidad, 0 );
+    let nuevoNumerito = productosEnCarrito.reduce((acc, pantalon) => acc + pantalon.cantidad, 0 );
     numerito.innerText = nuevoNumerito;
   
     console.log(nuevoNumerito);
